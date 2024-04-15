@@ -7,7 +7,7 @@ from pphero.model.MidJourney import MidJourneyItem
 import ua_generator
 class ImagePipeline(FilesPipeline):
     def __init__(self, store_uri, download_func=None, settings=None):
-        super().__init__("D:\\code-project\\download_midjourney", download_func, settings)
+        super().__init__("/", download_func, settings)
 
     def get_media_requests(self, item, info):
         # if info.spider.name=="mj":
