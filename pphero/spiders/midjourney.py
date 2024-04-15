@@ -184,8 +184,8 @@ class PromptHero(scrapy.Spider):
     def before_response(self, request:scrapy.Request,response:scrapy.http.TextResponse):
         raw=response.text
         if "cdn.midjourney.com" in request.url:
-            if raw[0:9]=="<!DOCTYPE":
-                self.block_ua[request.headers["user-agent"]]=DateTime.Now()
+            if response.status==429 or raw[0:9]=="<!DOCTYPE":
+                self.block_ua[request.headers["User-Agent"]]=DateTime.Now()
                 _header = self.get_ua()
                 header = {
                     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
