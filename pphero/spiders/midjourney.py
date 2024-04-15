@@ -144,7 +144,11 @@ class PromptHero(scrapy.Spider):
             time.sleep(60*10)
         
         _header = ua_generator.generate(device='desktop', browser=('chrome', 'edge')).headers.get()
-        ua=_header["user-agent"]
+        ua=_header.get("user-agent")
+        if not ua:
+            ua=_header.get("User-Agent")
+            _header["user-agent"]=_header["User-Agent"]
+            del _header["User-Agent"]
         now=DateTime.Now()
         if self.block_ua.get(ua) and (now-self.block_ua.get(ua)).TotalMinute<120:
             return self.get_ua(level+1)
@@ -185,7 +189,10 @@ class PromptHero(scrapy.Spider):
         raw=response.text
         if "cdn.midjourney.com" in request.url:
             if response.status==429 or raw[0:9]=="<!DOCTYPE":
-                self.block_ua[request.headers["User-Agent"]]=DateTime.Now()
+                _ua=request.headers.get("User-Agent")
+                if not _ua:
+                    _ua=request.headers["user-agent"]
+                self.block_ua[_ua]=DateTime.Now()
                 _header = self.get_ua()
                 header = {
                     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
