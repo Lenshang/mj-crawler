@@ -102,8 +102,8 @@ class PromptHero(scrapy.Spider):
             _item["raw_json"]=json.dumps(item.ToOriginal())
             _item["id"]=id
             _item["img_url"]=f"https://cdn.midjourney.com/{item['parent_id'].ToString()}/0_0.webp"
-            _item["file_path"]=os.path.join(self.save_path,"./image/"+id+".webp")
-            _item["raw_file_path"]=os.path.join(self.save_path,"./info/"+id+".json")
+            _item["file_path"]=self.save_path+"/image/"+id+".webp" #os.path.join(self.save_path,"./image/"+id+".webp")
+            _item["raw_file_path"]=self.save_path+"/info/"+id+".json" #os.path.join(self.save_path,"./info/"+id+".json")
 
             if id not in self.crawled:
                 self.search_queue.put(id)
@@ -138,10 +138,10 @@ class PromptHero(scrapy.Spider):
     def get_ua(self,level=0):
         if level>10:
             self.logger.info("没有可用UA,等待1分钟")
-            time.sleep(1000*60)
+            time.sleep(60)
         elif level>20:
             self.logger.info("没有可用UA,等待10分钟")
-            time.sleep(1000*60*10)
+            time.sleep(60*10)
         
         _header = ua_generator.generate(device='desktop', browser=('chrome', 'edge')).headers.get()
         ua=_header["user-agent"]
