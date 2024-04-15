@@ -152,6 +152,7 @@ class PromptHero(scrapy.Spider):
         now=DateTime.Now()
         if self.block_ua.get(ua) and (now-self.block_ua.get(ua)).TotalMinute<120:
             return self.get_ua(level+1)
+        print("GETUA:"+ua)
         return _header
     
     def before_request(self, request:scrapy.Request):
@@ -188,9 +189,11 @@ class PromptHero(scrapy.Spider):
     def before_response(self, request:scrapy.Request,response:scrapy.http.TextResponse):
         raw=response.text
         if "cdn.midjourney.com" in request.url:
-            if response.status==429 or raw[0:9]=="<!DOCTYPE":
-                self.logger.info("check 429! sleep 60")
-                time.sleep(60)
+            if response.status==500:
+                return request
+            elif response.status==429 or raw[0:9]=="<!DOCTYPE":
+                self.logger.info("check 429!")
+                time.sleep(3)
                 _ua=request.headers.get("User-Agent")
                 if not _ua:
                     _ua=request.headers["user-agent"]

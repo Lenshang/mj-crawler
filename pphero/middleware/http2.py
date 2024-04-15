@@ -13,14 +13,15 @@ class Http2Middleware(object):
                 else:
                     headers[key]=request.headers[key]
             async with httpx.AsyncClient(http2=False, verify=False,proxies=request.meta.get("proxy")) as client:
-                res=await client.get(url=url, headers=headers,timeout=10)
+                res=await client.get(url=url, headers=headers,timeout=60000)
 
             response = TextResponse(url,body=res.content,encoding='utf-8',request=request,status=res.status_code)
+            # response = TextResponse(url,body=res.content,encoding='utf-8',request=request,status=429)
             return response
         except Exception as e:
             spider.logger.info("retry:"+str(e))
             time.sleep(10)
-            return request
+            return TextResponse(url,body="",encoding='utf-8',request=request,status=500)
         
     # def process_request(self, request, spider):
     #     try:
