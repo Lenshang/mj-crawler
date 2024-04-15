@@ -7,7 +7,7 @@ from pphero.model.MidJourney import MidJourneyItem
 import ua_generator
 class ImagePipeline(FilesPipeline):
     def __init__(self, store_uri, download_func=None, settings=None):
-        super().__init__("/", download_func, settings)
+        super().__init__("D:\\code-project\\download_midjourney", download_func, settings)
 
     def get_media_requests(self, item, info):
         # if info.spider.name=="mj":
@@ -29,7 +29,7 @@ class ImagePipeline(FilesPipeline):
         #     header=info.spider.headers.copy()
         if os.path.exists(item["file_path"]):
             return None
-        return [scrapy.Request(item["img_url"],meta={"dbItem":item,"http2":True})]
+        return [scrapy.Request(item["img_url"],meta={"dbItem":item})]
 
     def file_path(self, request, response=None, info=None):
         dbItem=request.meta["dbItem"]

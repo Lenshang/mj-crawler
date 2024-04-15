@@ -33,7 +33,7 @@ class PromptHero(scrapy.Spider):
         "DEPTH_PRIORITY": 0,
         "RETRY_TIMES": 200,
         "COOKIES_ENABLED": False,
-        "HTTPERROR_ALLOWED_CODES": [500,503],
+        "HTTPERROR_ALLOWED_CODES": [500,503,429],
         "MEDIA_ALLOW_REDIRECTS":True,
         "RETRY_HTTP_CODES":[],
         "ITEM_PIPELINES": {
@@ -189,6 +189,8 @@ class PromptHero(scrapy.Spider):
         raw=response.text
         if "cdn.midjourney.com" in request.url:
             if response.status==429 or raw[0:9]=="<!DOCTYPE":
+                self.logger.info("check 429! sleep 60")
+                time.sleep(60)
                 _ua=request.headers.get("User-Agent")
                 if not _ua:
                     _ua=request.headers["user-agent"]

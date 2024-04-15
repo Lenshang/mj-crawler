@@ -20,7 +20,7 @@ class Http2Middleware(object):
         except Exception as e:
             spider.logger.info("retry:"+str(e))
             time.sleep(10)
-            return await self.process_request(request,spider)
+            return request
         
     # def process_request(self, request, spider):
     #     try:
