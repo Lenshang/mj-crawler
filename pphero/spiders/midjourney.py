@@ -134,6 +134,7 @@ class PromptHero(scrapy.Spider):
         headers["cookie"]=cookie
         return headers
     
+    
     def get_ua(self,level=0):
         if level>10:
             self.logger.info("没有可用UA,等待1分钟")
