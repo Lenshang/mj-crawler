@@ -68,7 +68,7 @@ class PromptHero(scrapy.Spider):
             for line in f.readlines():
                 if line:
                     self.cookies.append(line.strip())
-        self.save_path="/mnt/midjourney"
+        self.save_path="/mnt/midjourney/data/midjourney"
         self.batch_size=5
         self.crawled=[]
         self.block_ua={}
