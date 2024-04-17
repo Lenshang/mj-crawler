@@ -75,7 +75,7 @@ class PromptHero(scrapy.Spider):
                 "http": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]},
                 "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]}
             }
-        self.c=c
+        self.c=int(c)
         self.save_path="/mnt/midjourney/data/midjourney"
         # self.save_path="D://midjourney"
         self.batch_size=5
