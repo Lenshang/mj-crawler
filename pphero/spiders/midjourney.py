@@ -24,11 +24,11 @@ class PromptHero(scrapy.Spider):
     allowed_domains = ['midjourney.com']
     DEBUG=False
     custom_settings = {
-        'CONCURRENT_REQUESTS': 1,
-        'REACTOR_THREADPOOL_MAXSIZE': 1,
-        "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
-        "CONCURRENT_REQUESTS_PER_IP": 1,
-        "DOWNLOAD_DELAY": 3,
+        'CONCURRENT_REQUESTS': 5,
+        'REACTOR_THREADPOOL_MAXSIZE': 5,
+        "CONCURRENT_REQUESTS_PER_DOMAIN": 5,
+        "CONCURRENT_REQUESTS_PER_IP": 5,
+        "DOWNLOAD_DELAY": 0,
         'DOWNLOAD_TIMEOUT':0,
         "DEPTH_PRIORITY": 0,
         "RETRY_TIMES": 200,
