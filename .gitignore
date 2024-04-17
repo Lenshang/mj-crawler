@@ -310,3 +310,4 @@ config_test.py
 data/
 *.db
 mj_cookies.txt
+proxy.json

@@ -62,13 +62,21 @@ class PromptHero(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.p=0
-        self.proxies=[]
+        self.proxies={}
         self.cookies= []
         with open("./mj_cookies.txt","r") as f:
             for line in f.readlines():
                 if line:
                     self.cookies.append(line.strip())
+        with open("./proxy.json","r") as f:
+             rawstr="".join(f.readlines())
+             raw=json.loads(rawstr)
+             self.proxies = {
+                "http": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]},
+                "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]}
+            }
         self.save_path="/mnt/midjourney/data/midjourney"
+        # self.save_path="D://midjourney"
         self.batch_size=5
         self.crawled=[]
         self.block_ua={}
@@ -183,6 +191,7 @@ class PromptHero(scrapy.Spider):
                 "Accept-Encoding":"gzip, deflate, br, zstd",
                 "accept-language": "zh-CN,zh;q=0.9",
             }
+            request.meta['proxy'] = self.proxies["http"]
             request.headers=header
         return request
     

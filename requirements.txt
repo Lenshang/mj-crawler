@@ -1,3 +1,5 @@
 httpx[http2]
 ua_generator
 scrapy
+python-dateutil
+exobject
