@@ -59,7 +59,7 @@ class PromptHero(scrapy.Spider):
         "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
     }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, c=0,*args, **kwargs):
         super().__init__(*args, **kwargs)
         self.p=0
         self.proxies={}
@@ -75,6 +75,7 @@ class PromptHero(scrapy.Spider):
                 "http": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]},
                 "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]}
             }
+        self.c=c
         self.save_path="/mnt/midjourney/data/midjourney"
         # self.save_path="D://midjourney"
         self.batch_size=5
@@ -86,22 +87,25 @@ class PromptHero(scrapy.Spider):
     def start_requests(self):
         self.logger.info("启动")
 
-        for i in range(0,self.batch_size):
-            url=f"https://www.midjourney.com/api/app/recent-jobs?amount=50&page={str(i)}&feed=random_recent_jobs&_ql=explore"
-            yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
-                "page":i,
-                "search_id":"",
-            })
+        if self.c==1:
+            for item in os.listdir("./download_midjourney/info"):
+                if item.endswith(".json"):
+                    search_id=item[:-5]
+                    url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
 
-        # for item in os.listdir("./download_midjourney/info"):
-        #     if item.endswith(".json"):
-        #         search_id=item[:-5]
-        #         url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
+                    yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
+                        "page":0,
+                        "search_id":search_id
+                    })
+        else:
+            for i in range(0,self.batch_size):
+                url=f"https://www.midjourney.com/api/app/recent-jobs?amount=50&page={str(i)}&feed=random_recent_jobs&_ql=explore"
+                yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
+                    "page":i,
+                    "search_id":"",
+                })
 
-        #         yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
-        #             "page":0,
-        #             "search_id":search_id
-        #         })
+
     def parse_data(self,response):
         jObj=ExObject.loadJson(response.text)
         for item in jObj["jobs"]:
