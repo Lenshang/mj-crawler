@@ -88,7 +88,7 @@ class PromptHero(scrapy.Spider):
         self.logger.info("启动")
 
         if self.c==1:
-            for item in os.listdir("./download_midjourney/info"):
+            for item in os.listdir(self.save_path+"/info"):
                 if item.endswith(".json"):
                     search_id=item[:-5]
                     url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
