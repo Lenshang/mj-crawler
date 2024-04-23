@@ -121,7 +121,7 @@ class PromptHero(scrapy.Spider):
                 self.search_queue.put(id)
                 self.crawled.append(id)
             yield _item
-        if len(jObj["jobs"])==0:
+        if len(jObj["jobs"])==0 or response.meta["page"]>20:
             next_page=0
             search_id=self.search_queue.get()
             url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
