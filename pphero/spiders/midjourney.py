@@ -24,10 +24,10 @@ class PromptHero(scrapy.Spider):
     allowed_domains = ['midjourney.com']
     DEBUG=False
     custom_settings = {
-        'CONCURRENT_REQUESTS': 5,
-        'REACTOR_THREADPOOL_MAXSIZE': 5,
-        "CONCURRENT_REQUESTS_PER_DOMAIN": 5,
-        "CONCURRENT_REQUESTS_PER_IP": 5,
+        'CONCURRENT_REQUESTS': 3,
+        'REACTOR_THREADPOOL_MAXSIZE': 3,
+        "CONCURRENT_REQUESTS_PER_DOMAIN": 3,
+        "CONCURRENT_REQUESTS_PER_IP": 3,
         "DOWNLOAD_DELAY": 0,
         'DOWNLOAD_TIMEOUT':0,
         "DEPTH_PRIORITY": 0,
@@ -41,7 +41,8 @@ class PromptHero(scrapy.Spider):
         },
         'DOWNLOADER_MIDDLEWARES' : {
             'pphero.middleware.retry.RetryMiddleware': 300,
-            'pphero.middleware.http2.Http2Middleware': 400,
+            # 'pphero.middleware.http2.Http2Middleware': 400,
+            'pphero.middleware.http2.TLSMiddleware': 400,
         }
     }
     headers = {
