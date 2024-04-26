@@ -118,18 +118,25 @@ class PromptHero(scrapy.Spider):
             _item["file_path"]=self.save_path+"/image/"+id+".webp" #os.path.join(self.save_path,"./image/"+id+".webp")
             _item["raw_file_path"]=self.save_path+"/info/"+id+".json" #os.path.join(self.save_path,"./info/"+id+".json")
 
-            if id not in self.crawled:
-                self.search_queue.put(id)
+            if id not in self.crawled and "_ql=explore" in response.url:
+                # self.search_queue.put(id)
                 self.crawled.append(id)
+                next_page=0
+                url=f"https://www.midjourney.com/api/app/vector-search?prompt={id}&page=0&_ql=explore"
+                yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
+                    "page":next_page,
+                    "search_id":id
+                })
             yield _item
-        if len(jObj["jobs"])==0 or response.meta["page"]>20:
-            next_page=0
-            search_id=self.search_queue.get()
-            url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
-            yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
-                "page":next_page,
-                "search_id":search_id
-            })
+        if len(jObj["jobs"])==0:
+            # next_page=0
+            # search_id=self.search_queue.get()
+            # url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
+            # yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
+            #     "page":next_page,
+            #     "search_id":search_id
+            # })
+            return
         else:
             if response.meta['search_id']:
                 next_page=response.meta["page"]+1
