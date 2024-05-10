@@ -143,7 +143,7 @@ class PromptHero(scrapy.Spider):
                 url=f"https://www.midjourney.com/api/app/vector-search?prompt={response.meta['search_id']}&page={str(next_page)}&_ql=explore"
             else:
                 next_page=response.meta["page"]+self.batch_size
-                url=f"https://www.midjourney.com/api/app/recent-jobs?amount=50&page={str(next_page)}&feed=random_recent_jobs&_ql=explore"
+                url=f"https://www.midjourney.com/api/app/recent-jobs?amount=50&page={str(next_page)}&feed=top&_ql=explore"
             yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
                 "page":next_page,
                 "search_id":response.meta['search_id']
@@ -186,6 +186,7 @@ class PromptHero(scrapy.Spider):
         #         "Authorization":"Bearer "
         #         })
         # request.meta['proxy'] = "http://127.0.0.1:8888"
+        request.meta['proxy'] = self.proxies["http"]
         if "cdn.midjourney.com" in request.url:
             _header = self.get_ua()
             header = {
@@ -203,7 +204,6 @@ class PromptHero(scrapy.Spider):
                 "Accept-Encoding":"gzip, deflate, br, zstd",
                 "accept-language": "zh-CN,zh;q=0.9",
             }
-            request.meta['proxy'] = self.proxies["http"]
             request.headers=header
         return request
     
