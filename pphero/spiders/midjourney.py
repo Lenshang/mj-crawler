@@ -150,7 +150,22 @@ class PromptHero(scrapy.Spider):
             })
 
     def create_header(self,cookie:str):
-        headers=self.headers.copy()
+        # headers=self.headers.copy()
+        _header = self.get_ua()
+        headers = {
+            "accept": "*/*",
+            "accept-language": "en,zh-CN;q=0.9,zh;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5",
+            "sec-ch-ua": _header["sec-ch-ua"],
+            "sec-ch-ua-mobile": _header["sec-ch-ua-mobile"],
+            "sec-ch-ua-platform": _header["sec-ch-ua-platform"],
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-csrf-protection": "1",
+            "Referer": "https://www.midjourney.com/explore",
+            "Referrer-Policy": "origin-when-cross-origin",
+            "user-agent":_header["user-agent"]
+        }
         headers["cookie"]=cookie
         return headers
     
