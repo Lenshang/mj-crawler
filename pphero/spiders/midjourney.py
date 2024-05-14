@@ -150,22 +150,22 @@ class PromptHero(scrapy.Spider):
             })
 
     def create_header(self,cookie:str):
-        # headers=self.headers.copy()
-        _header = self.get_ua()
-        headers = {
-            "accept": "*/*",
-            "accept-language": "en,zh-CN;q=0.9,zh;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5",
-            "sec-ch-ua": _header["sec-ch-ua"],
-            "sec-ch-ua-mobile": _header["sec-ch-ua-mobile"],
-            "sec-ch-ua-platform": _header["sec-ch-ua-platform"],
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-csrf-protection": "1",
-            "Referer": "https://www.midjourney.com/explore",
-            "Referrer-Policy": "origin-when-cross-origin",
-            "user-agent":_header["user-agent"]
-        }
+        headers=self.headers.copy()
+        # _header = self.get_ua()
+        # headers = {
+        #     "accept": "*/*",
+        #     "accept-language": "en,zh-CN;q=0.9,zh;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5",
+        #     "sec-ch-ua": _header["sec-ch-ua"],
+        #     "sec-ch-ua-mobile": _header["sec-ch-ua-mobile"],
+        #     "sec-ch-ua-platform": _header["sec-ch-ua-platform"],
+        #     "sec-fetch-dest": "empty",
+        #     "sec-fetch-mode": "cors",
+        #     "sec-fetch-site": "same-origin",
+        #     "x-csrf-protection": "1",
+        #     "Referer": "https://www.midjourney.com/explore",
+        #     "Referrer-Policy": "origin-when-cross-origin",
+        #     "user-agent":_header["user-agent"]
+        # }
         headers["cookie"]=cookie
         return headers
     
@@ -187,7 +187,7 @@ class PromptHero(scrapy.Spider):
         now=DateTime.Now()
         if self.block_ua.get(ua) and (now-self.block_ua.get(ua)).TotalMinute<120:
             return self.get_ua(level+1)
-        print("GETUA:"+ua)
+        # print("GETUA:"+ua)
         return _header
     
     def before_request(self, request:scrapy.Request):
@@ -201,7 +201,7 @@ class PromptHero(scrapy.Spider):
         #         "Authorization":"Bearer "
         #         })
         # request.meta['proxy'] = "http://127.0.0.1:8888"
-        request.meta['proxy'] = self.proxies["http"]
+        
         if "cdn.midjourney.com" in request.url:
             _header = self.get_ua()
             header = {
@@ -220,6 +220,7 @@ class PromptHero(scrapy.Spider):
                 "accept-language": "zh-CN,zh;q=0.9",
             }
             request.headers=header
+            request.meta['proxy'] = self.proxies["http"]
         return request
     
     def before_response(self, request:scrapy.Request,response:scrapy.http.TextResponse):
