@@ -35,6 +35,7 @@ class PromptHero(scrapy.Spider):
         "COOKIES_ENABLED": False,
         "HTTPERROR_ALLOWED_CODES": [500,503,429],
         "MEDIA_ALLOW_REDIRECTS":True,
+        "DEPTH_PRIORITY":1,
         "RETRY_HTTP_CODES":[],
         "ITEM_PIPELINES": {
             'pphero.pipelines.ImagePipeline.ImagePipeline': 100,
