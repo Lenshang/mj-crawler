@@ -61,11 +61,12 @@ class PromptHero(scrapy.Spider):
         "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
     }
 
-    def __init__(self, c=0,*args, **kwargs):
+    def __init__(self, c=0,search=1,*args, **kwargs):
         super().__init__(*args, **kwargs)
         self.p=0
         self.proxies={}
         self.cookies= []
+        
         with open("./mj_cookies.txt","r") as f:
             for line in f.readlines():
                 if line:
@@ -78,6 +79,7 @@ class PromptHero(scrapy.Spider):
                 "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]}
             }
         self.c=int(c)
+        self.search=int(search)
         self.save_path="/mnt/images"
         # self.save_path="D://midjourney"
         self.batch_size=5
@@ -132,7 +134,7 @@ class PromptHero(scrapy.Spider):
             _item["file_path"]=self.save_path+"/image/"+id+".webp" #os.path.join(self.save_path,"./image/"+id+".webp")
             _item["raw_file_path"]=self.save_path+"/info/"+id+".json" #os.path.join(self.save_path,"./info/"+id+".json")
 
-            if id not in self.crawled and "_ql=explore" in response.url:
+            if id not in self.crawled and "_ql=explore" in response.url and self.search==1:
                 # self.search_queue.put(id)
                 self.crawled.append(id)
                 next_page=0
