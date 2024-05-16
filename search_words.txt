@@ -1,0 +1,338 @@
+Walk 
+Run 
+Talk 
+Listen 
+Eat 
+Sleep 
+Sing 
+Dance 
+Write 
+Read 
+Draw 
+Paint 
+Cook 
+Drive 
+Swim 
+Laugh 
+Cry 
+Smile 
+Apologize 
+Thank 
+Hug 
+Kiss 
+Jump 
+Climb
+Play game 
+Watch 
+Think 
+Learn 
+Share
+Work 
+Relax 
+Exercise 
+Meditate 
+Compete 
+Travel 
+Explore 
+Discover 
+Challenge
+Adapt 
+Celebrate 
+Collaborate 
+Communicate 
+Argue 
+Agree 
+Negotiate 
+Gamble 
+Disappoint 
+Surprise 
+Frown 
+Wander 
+Roam 
+Snack 
+Gossip 
+Complain 
+Daydream 
+Compliment 
+Flirt 
+Date 
+Break 
+Mend 
+Fear 
+Pray 
+Worry 
+Trust 
+Enjoy 
+Detest 
+Rebel 
+Build 
+Destroy 
+Copy 
+Plant 
+Harvest 
+Win 
+Love 
+Hate 
+Marry 
+Divorce 
+Flatter 
+Boast 
+Scold 
+Lecture 
+Whisper 
+Succeed 
+Fail 
+Rest 
+Birthday 
+Party 
+Picnic 
+Wedding 
+Concert 
+Festival 
+Parade 
+Barbecue 
+Beach 
+Campfire 
+Shopping 
+Fireworks 
+Airport 
+Skiing 
+Carnival 
+Protest 
+Graduation 
+Spa 
+Meeting 
+Conference 
+Market 
+Coffee 
+Library 
+Art Museum 
+Park 
+Garden 
+Church 
+Temple 
+Mosque 
+Restaurant 
+Cafe 
+Bar 
+Club 
+Theater 
+Cinema 
+Stadium 
+Hospital 
+School 
+Gym 
+Playground 
+Amusement 
+Farm 
+Circus 
+Zoo 
+Race 
+Swimming Pool 
+Cruise 
+Fishing
+Skateboarding
+Bowling
+Rollerblading
+Street fair
+Farmers' market
+Board game
+Movie night
+Candlelit dinner
+Shopping mall
+Rooftop party
+Boardwalk
+Trampoline park
+Arcade
+Family reunion
+Holiday parade
+Opera
+Symphony
+Book club
+Poker night
+Bookstore
+Beach volleyball
+Ice skating
+Scuba diving
+Snorkeling
+Sailing
+Rock climbing
+Caving
+Karaoke
+Ice cream shop
+Pizzeria
+Wine tasting
+Bowling alley
+Library
+Art gallery
+Coffee shop
+Food truck
+BBQ
+Water park
+Roller coaster
+golf
+Go-kart racing
+Wine bar
+Brewpub
+Opera house
+Concert hall
+Poetry
+Film festival
+Escape room
+Petting zoo
+Science museum
+Skydiving
+Hang gliding
+Paragliding
+Kite flying
+Hot air balloon
+Zip-lining
+Bungee jumping
+Wine tour
+Brewery tour
+Bird-watching
+Horseback riding
+Rodeo
+Jousting
+Comic-Con
+Cosplay
+Anime convention
+Tailgate
+Balcony view
+Ferris wheel
+Rollercoaster ride
+Waterslide
+Jet ski
+Surfing
+Bodyboarding
+Skate park
+Skate ramp
+Horse racing
+Polo match
+Drag racing
+Bobsledding
+Rock concert
+Jazz club
+Blues bar
+Karaoke night
+Dance club
+Flash mob
+Acrobatics
+Jazz band
+Rock band
+Symphony orchestra
+Drinking alcohol
+Listening to music
+Getting dressed
+Wearing glasses
+Cutting vegetables
+Eating a meal
+Sitting down
+Making a phone call
+Sending text messages
+Browsing the internet
+Changing clothes
+Brushing teeth
+Taking a shower
+Blow-drying hair
+Refrigerating
+Washing dishes
+Doing laundry
+Playing the piano
+Cleaning
+Reading a book
+Playing games
+Sleeping
+Watching TV
+Traveling
+Painting
+Taking photos
+Washing a car
+Riding a bike
+Driving a car
+Walking the dog
+Slicing fruits
+Jumping rope
+Visiting landmarks
+Watching sports games
+Playing cards
+Planting flowers and plants
+Buying groceries
+Creating music
+Doing household chores
+Trimming hair
+Fixing bicycles
+Translating languages
+Taking out the trash
+Painting
+Telling stories
+Watching plays
+Building things
+Repairing appliances
+Admiring flowers
+Sightseeing and taking photos
+Decorating rooms
+Creating poetry
+Educating others
+Knitting sweaters
+Creating art
+Making crafts
+Repairing cars
+Designing architecture
+Decorating cakes
+Taking a walk
+Visiting museums
+Yard work
+Exercising
+Enjoying night views
+Feeding pets
+Practicing yoga
+Watching football games
+Visiting the zoo
+Playing table tennis
+Watching musicals
+Studying astronomy
+Making candies
+Exploring castles
+Playing baseball
+Online shopping
+Visiting museums
+Stargazing
+Practicing archery
+Making pizza
+Attending art exhibitions
+Learning judo
+Beachcombing
+Doing home renovations
+Sledding
+Reading comics
+Fencing 
+pottery
+water parks
+Watching esports
+flower fields
+cityscapes
+Forest hikes
+Exploring the ocean
+fashion shows
+scuba diving
+Rock climbing
+grasslands
+rafting
+rowing
+Photography
+Volcano
+Ocean exploration
+Paragliding
+Boating
+Ride a bicycle
+Fruit picking
+Christmas
+Thanksgiving
+New Year
+Easter
+Halloween
+Chinese New Year
+Valentine's Day
+Riding horses
+crafting

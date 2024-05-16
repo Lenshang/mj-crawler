@@ -98,6 +98,19 @@ class PromptHero(scrapy.Spider):
                         "page":0,
                         "search_id":search_id
                     })
+        elif self.c==2:
+            kw=[]
+            with open("./search_words.txt","r") as f:
+                for line in f.readlines():
+                    if line:
+                        kw.append(parse.quote(line.strip()))
+            for search_id in kw:
+                url=f"https://www.midjourney.com/api/app/vector-search?prompt={search_id}&page=0&_ql=explore"
+
+                yield Request(url, callback=self.parse_data,headers=self.create_header(self.get_random_cookies()),dont_filter=True,meta={
+                    "page":0,
+                    "search_id":search_id
+                })
         else:
             for i in range(0,self.batch_size):
                 url=f"https://www.midjourney.com/api/app/recent-jobs?amount=50&page={str(i)}&feed=top&_ql=explore"
