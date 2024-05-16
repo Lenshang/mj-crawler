@@ -28,6 +28,7 @@ class ImagePipeline(FilesPipeline):
         # else:
         #     header=info.spider.headers.copy()
         if os.path.exists(item["file_path"]):
+            print("skip:"+item["file_path"])
             return None
         return [scrapy.Request(item["img_url"],meta={"dbItem":item})]
 
