@@ -10,23 +10,6 @@ class ImagePipeline(FilesPipeline):
         super().__init__("/", download_func, settings)
 
     def get_media_requests(self, item, info):
-        # if info.spider.name=="mj":
-        #     _ua = ua_generator.generate(device='desktop', browser=('chrome', 'edge'))
-        #     _header = _ua.headers.get()
-        #     header = {
-        #         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-        #         "accept-language": "zh-CN,zh;q=0.9",
-        #         "sec-fetch-dest": "document",
-        #         "sec-fetch-mode": "navigate",
-        #         "sec-fetch-site": "none",
-        #         "Sec-Fetch-User":"?1",
-        #         "x-csrf-protection": "1",
-        #         "Connection":"keep-alive",
-        #         "Upgrade-Insecure-Requests":"1",
-        #         **_header
-        #     }
-        # else:
-        #     header=info.spider.headers.copy()
         if os.path.exists(item["file_path"]):
             print("skip:"+item["file_path"])
             return None
