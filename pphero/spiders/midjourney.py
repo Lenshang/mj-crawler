@@ -71,13 +71,13 @@ class PromptHero(scrapy.Spider):
             for line in f.readlines():
                 if line:
                     self.cookies.append(line.strip())
-        with open("./proxy.json","r") as f:
-             rawstr="".join(f.readlines())
-             raw=json.loads(rawstr)
-             self.proxies = {
-                "http": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]},
-                "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]}
-            }
+        # with open("./proxy.json","r") as f:
+        #      rawstr="".join(f.readlines())
+        #      raw=json.loads(rawstr)
+        #      self.proxies = {
+        #         "http": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]},
+        #         "https": "http://%(user)s:%(pwd)s@%(proxy)s/" % {"user": raw["username"], "pwd": raw["password"], "proxy": raw["tunnel"]}
+        #     }
         self.c=int(c)
         self.search=int(search)
         self.save_path="/mnt/images"
@@ -236,7 +236,7 @@ class PromptHero(scrapy.Spider):
                 "accept-language": "zh-CN,zh;q=0.9",
             }
             request.headers=header
-            request.meta['proxy'] = self.proxies["http"]
+            # request.meta['proxy'] = self.proxies["http"]
         return request
     
     def before_response(self, request:scrapy.Request,response:scrapy.http.TextResponse):

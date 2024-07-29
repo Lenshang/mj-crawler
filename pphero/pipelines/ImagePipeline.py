@@ -10,7 +10,7 @@ class ImagePipeline(FilesPipeline):
         super().__init__("/", download_func, settings)
 
     def get_media_requests(self, item, info):
-        if os.path.exists(item["file_path"]):
+        if os.path.exists(item["raw_file_path"]):
             print("skip:"+item["file_path"])
             return None
         return [scrapy.Request(item["img_url"],meta={"dbItem":item})]
